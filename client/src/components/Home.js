@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 class Home extends Component {
   state = { test: null };
@@ -16,13 +16,32 @@ class Home extends Component {
       .then(state => this.setState(state));
   }
 
+  login = () => {
+    this.props.history.push(`/login`);
+  };
+  SignUp = () => {
+    this.props.history.push(`/join`);
+  };
+
   render() {
     return (
-      <Container>
+      <Container className="my-3">
         <Row>
           <Col className="">
-            <h1>Team Finder</h1>
-            <h2>Find People to Play Sports With You</h2>
+            <h2>Pick-Up League</h2>
+            <p>Find pick-up games near you</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button onClick={this.login} className="btn-block">
+              Login
+            </Button>
+          </Col>
+          <Col>
+            <Button onClick={this.SignUp} className="btn-block">
+              Sign up
+            </Button>
           </Col>
         </Row>
       </Container>
