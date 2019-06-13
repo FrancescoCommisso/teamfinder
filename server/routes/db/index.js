@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../../firebaseConfig");
 const db = admin.firestore();
+const auth = admin.auth();
 const usersRef = db.collection("users");
 const gamesRef = db.collection("games");
 
