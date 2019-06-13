@@ -13,8 +13,6 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-console.log("PRIVATE KEY: " + process.env.private_key);
-
 const routes = require("./routes");
 app.use("/", routes());
 

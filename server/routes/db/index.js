@@ -26,7 +26,8 @@ module.exports = () => {
       .then(() => {
         res.sendStatus(200);
       })
-      .catch(() => {
+      .catch(e => {
+        console.log("Error Adding user: " + e.message);
         res.sendStatus(504);
       });
   });
