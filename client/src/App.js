@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./components/Main.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter
+} from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Helmet from "react-helmet";
 import Home from "./components/Home";
@@ -11,14 +16,14 @@ import CreateMarker from "./components/CreateMarker.js";
 import CreateAccount from "./components/CreateAccount.js";
 import Profile from "./components/Profile.js";
 import { firebaseApp } from "./firebaseConfig";
+import CMap from "./components/Map";
 const auth = firebaseApp.auth();
 
 class App extends Component {
   signOut = () => {
-    auth.signOut().then(() => {
-      this.props.history.push(`/login`);
-    });
+    auth.signOut();
   };
+
   render() {
     let background = "#ffffff";
     return (
@@ -40,6 +45,7 @@ class App extends Component {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/login" component={Auth} />
                   <Route exact path="/join" component={CreateAccount} />
+                  <Route exact path="/map" component={CMap} />
                   <Route exact path="/user" component={Profile} />
                   <Route exact path="/create" component={CreateMarker} />
                 </Switch>

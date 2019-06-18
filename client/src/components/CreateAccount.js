@@ -17,6 +17,9 @@ class CreateAccount extends Component {
   confirmChange = e => {
     this.setState({ confirm: e.target.value });
   };
+  postalCodeChange = e => {
+    this.setState({ postalcode: e.target.value });
+  };
 
   checkName = () => {
     let message = "Enter Name";
@@ -39,6 +42,19 @@ class CreateAccount extends Component {
     }
   };
 
+  checkPostalCode = () => {
+    console.log("checking postalcode");
+    // var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // console.log("this.state.email: " + this.state.email);
+    // if (re.test(String(this.state.username).toLowerCase())) {
+    //   return true;
+    // } else {
+    //   this.setState({ message: "Email badly formatted" });
+    //   return false;
+    // }
+    return true;
+  };
+
   checkPassword = () => {
     return true;
   };
@@ -55,7 +71,8 @@ class CreateAccount extends Component {
       this.checkEmail() &&
       this.checkName() &&
       this.checkPassword() &&
-      this.confirmPassword()
+      this.confirmPassword() &&
+      this.checkPostalCode()
     ) {
       this.setState({ message: "" });
       return true;
@@ -85,7 +102,12 @@ class CreateAccount extends Component {
 
   addUser = uid => {
     console.log("uid: " + uid);
-    let user = { id: uid, name: this.state.name, email: this.state.username };
+    let user = {
+      id: uid,
+      name: this.state.name,
+      email: this.state.username,
+      postalcode: this.state.postalcode
+    };
 
     fetch("/db/adduser", {
       method: "post",
@@ -128,6 +150,12 @@ class CreateAccount extends Component {
               <input
                 type="new-password"
                 onChange={this.confirmChange}
+                className="form-control"
+              />
+              <h4 className="my-2">Postal Code</h4>
+              <input
+                type="postal-code"
+                onChange={this.postalCodeChange}
                 className="form-control"
               />
 
