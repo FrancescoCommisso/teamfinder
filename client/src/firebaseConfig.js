@@ -9,4 +9,7 @@ const config = {
   messagingSenderId: "119307379115",
   appId: "1:119307379115:web:36517c53323e453a"
 };
-export const firebaseApp = firebase.initializeApp(config);
+const fb = firebase.initializeApp(config);
+fb.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+export const firebaseApp = fb;

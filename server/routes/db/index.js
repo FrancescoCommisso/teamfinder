@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../../firebaseConfig");
 const db = admin.firestore();
+const auth = admin.auth();
 const usersRef = db.collection("users");
 const gamesRef = db.collection("games");
 
@@ -26,7 +27,8 @@ module.exports = () => {
       .then(() => {
         res.sendStatus(200);
       })
-      .catch(() => {
+      .catch(e => {
+        console.log("Error Adding user: " + e.message);
         res.sendStatus(504);
       });
   });
